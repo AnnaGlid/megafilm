@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
+@import url('https://fonts.cdnfonts.com/css/champagne-limousines');
+
+body{
+    background-color: #d7d7d7;    
+}
+
+a{
+    text-decoration: none;
+    font-family: 'Oswald';
+}
+
+
+.sidenav{
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top:20px;
+}
+
+.sidenav a{
+    font-family: 'Oswald', sans-serif;
+    padding: 6px, 8px, 6px, 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display:block;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+.sidenav a:hover{
+    color: #f1f1f1;
+}
+
+.main{
+    margin-left: 170px;
+    margin-top: 30px;
+    padding: 0px, 10px;
+}
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    /* font-family: 'Champagne & Limousines', sans-serif; */
+    color: rgb(20, 20, 20);
+    font-size: 4vw;
+    font-weight: 300;
+    text-transform: uppercase;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+  }
+
+.desc{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 10px;
+}
+
+.footer{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    margin-top: 50%;
+}
+
+.text{
+    font-family: 'Oswald', sans-serif;
+    color: rgb(43, 43, 43);
+}
+
+table a{
+    color: rgb(249, 249, 249);
+    text-decoration: none;
+}
+
+table a:hover{
+    color: rgb(187, 155, 155);
+}
+
+.meta{
+    display:flex;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+.label{
+    width: 30%;
+    font-weight: 800;
+}
+
+.actor{
+    display: block;    
+}
+
+#return-btn{
+    margin-left: 10%;
+}
+
+#movie-title{
+    color: rgb(20, 20, 20);
+}
+
+.disabled {
+    color:#e40d0d;
+}
+
+.extra{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+

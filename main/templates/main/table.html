@@ -1,0 +1,24 @@
+{% extends "main/base.html"%}
+
+{% block header %} {% endblock %}
+
+{% block desc %}    
+{% endblock %}
+
+{% block extra %}
+
+{% endblock %}
+
+{% block data %}
+<table class="table table-striped table-dark" id="table">
+    <thead class="thead-light">
+        {% block headers %}
+        {% endblock %}
+    </thead>
+    <tbody>
+        {% block rows %}
+        {% endblock %}
+    </tbody>
+
+</table>
+{% endblock %}

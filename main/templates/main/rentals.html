@@ -1,0 +1,50 @@
+{% extends "main/table.html"%}
+
+{% block header %} 
+    <a href="/rentals/search" id="movie-title">
+        Wypożyczenia
+    </a>
+{% endblock %}
+
+{% block desc %}    
+    <form method="GET" action="/rentals/search">
+        {{  form.as_ul }}
+        <button type="submit">Szukaj</button>
+    </form>
+    
+{% endblock %}
+
+{% block headers %}
+            <th>LP</th>        
+            <th><a href="?{{ search }}order_by=name&sort={{ sort }}">Imię</a></th>
+            <th><a href="?{{ search }}order_by=surname&sort={{ sort }}">Nazwisko</a></th>
+            <th><a href="?{{ search }}order_by=phone&sort={{ sort }}">Nr telefonu</a></th>
+            <th><a href="?{{ search }}order_by=slug&sort={{ sort }}">Id filmu</a></th>
+            <th><a href="?{{ search }}order_by=title&sort={{ sort }}">Tytuł filmu</a></th>
+            <th><a href="?{{ search }}order_by=rentDate&sort={{ sort }}">Data wypożyczenia</a></th>
+            <th><a href="?{{ search }}order_by=plannedReturnDate&sort={{ sort }}">Planowana data zwrotu</a></th>
+            <th><a href="?{{ search }}order_by=returnDate&sort={{ sort }}">Data zwrotu</a></th>
+            <th></th>
+{% endblock %}
+{% block rows %}
+        {% for idx, rental in rentals %}
+            <tr>    
+                <th scope="row"> {{ idx }} </th>
+                <td> {{ rental.name }}</td>
+                <td>{{ rental.surname }}</td>
+                <td>{{ rental.phone }}</td>
+                <td>{{ rental.slug }}</td>
+                <td>{{ rental.title }}</td>
+                <td>{{ rental.rentDate }}</td>
+                <td>{{ rental.plannedReturnDate }}</td>
+                <td>{{ rental.returnDate }}</td>
+                <td>
+                    {% if not rental.returnDate %}
+                        <a href="/return/{{ rental.slug }}">
+                            ZWRÓĆ
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "main/base.html"%}
+
+{% block header %}
+    Wypożycz film
+{% endblock %}
+
+{% block desc %}
+    <form method="POST" action='{{ action_href }}'>
+        {% csrf_token %}
+        {{  form.as_p }}
+        <button type="submit"> Zatwierdź </button>
+    </form>
+{% endblock %}
+
+{% block data %}
+    <a href="{{ return_href }}" class="btn btn-dark btn-lg active" role="button">Powrót</a>
+{% endblock %}

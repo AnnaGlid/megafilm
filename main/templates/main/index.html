@@ -1,0 +1,28 @@
+{% extends "main/base.html"%}
+
+{% block header %}
+
+    {% if user.is_authenticated %}
+        Witaj, {{ user.username }}!
+    {% else %}
+        Witaj na MegaFilm!
+    {% endif %}
+
+{% endblock %}
+
+{% block desc %}
+    {% if not user.is_authenticated %}
+        <p>
+            <a href='/login'>Zaloguj się </a>
+                lub 
+                <a href='/register/'> zarejestruj </a>
+                aby kontynuować
+        </p>
+    {% elif not user.is_superuser %}
+        <p>Sprawdź swoje wypożyczenia <a href="/my_rentals/"> tutaj!</a></p>
+    {% endif %}
+{% endblock %}
+
+{% block data %}
+ 
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "main/table.html"%}
+
+{% block header %} 
+    <a href="/rentals/search" id="movie-title">
+        Twoje wypożyczenia
+    </a>
+{% endblock %}
+
+{% block desc %}    
+{% endblock %}
+
+{% block headers %}
+            <th>LP</th>        
+            <th><a href="?{{ search }}order_by=slug&sort={{ sort }}">Id filmu</a></th>
+            <th><a href="?{{ search }}order_by=rentDate&sort={{ sort }}">Data wypożyczenia</a></th>
+            <th><a href="?{{ search }}order_by=plannedReturnDate&sort={{ sort }}">Planowana data zwrotu</a></th>
+            <th><a href="?{{ search }}order_by=returnDate&sort={{ sort }}">Data zwrotu</a></th>
+{% endblock %}
+{% block rows %}
+        {% for idx, rental in rentals %}
+            <tr>    
+                <th scope="row"> {{ idx }} </th>                
+                <td>
+                    <a href="/movie/{{ rental.slug }}">
+                        {{ rental.slug }}
+                    </a>
+                </td>
+                <td>{{ rental.rentDate }}</td>
+                <td>{{ rental.plannedReturnDate }}</td>
+                <td>{{ rental.returnDate }}</td>
+            </tr>
+        {% endfor %}
+{% endblock %}

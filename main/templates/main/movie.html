@@ -1,0 +1,85 @@
+{% extends "main/base.html"%}
+
+{% block header %}
+    {{ movie.title }}
+{% endblock %}
+
+{% block desc %}
+    {{ movie.synopsis }}
+{% endblock %}
+
+{% block data %}
+    <a href="/movies/" class="btn btn-dark btn-lg active" role="button">Powrót</a>
+    {% if user.is_superuser %}
+        <a href="/movie/{{ movie.slug }}/edit/" class="btn btn-dark btn-lg active" role="button">Edytuj</a>
+        <a href="/movie/{{ movie.slug }}/delete/" class="btn btn-dark btn-lg active" role="button">Usuń</a>
+    {% endif %}
+
+    <div class="meta director">
+        <p class="label">Reżyser:</p>
+        <p class="value">{{ movie.director }}</p>
+    </div>
+
+    <div class="meta genre">
+        <p class="label">Gatunek:</p>
+        <p class="value">{{ movie.genre }}</p>
+    </div>
+
+    <div class="meta cast">
+        <p class="label">Obsada:</p>
+        <p class="value">
+            {% for actor in movie.cast %}
+                <label class="actor">
+                    {{ actor }}
+                </label>
+            {% endfor %}
+        </p>
+    </div>
+
+    <div class="meta rating">
+        <p class="label">Ocena:</p>
+        <p class="value">{{ movie.rating }}</p>
+    </div>
+
+    <div class="meta duration">
+        <p class="label">Czas trwania:</p>
+        <p class="value">{{  movie.duration }} min.</p>
+    </div>
+
+
+    <div class="meta year">
+        <p class="label">Rok:</p>
+        <p class="value">{{ movie.year }}</p>
+    </div>
+
+    <div class="meta">
+        {% if movie.isRented %}
+            {% if user.is_superuser %}
+                <a href="/return_admin/{{ movie.slug }}" class="btn btn-dark btn-lg active rental" role="button">
+                    Zwróć
+                </a>  
+            {% else  %}
+                <p class="btn btn-dark btn-lg active rental">
+                    Film niedostępny   
+                </p>            
+            {% endif %}
+        {% else %}
+            {% if user.is_superuser %}
+                <a href="/rent_admin/{{ movie.slug }}" class="btn btn-dark btn-lg active rental" role="button">
+                    Wypożycz
+                </a>            
+            {% elif user.is_authenticated %}
+                <a href="/rent/{{ movie.slug }}" class="btn btn-dark btn-lg active rental" role="button">
+                    Wypożycz
+                </a>
+            {% else %}
+                <p class="btn btn-dark btn-lg active rental">
+                    Zaloguj się aby wypożyczyć
+                </p>
+            {% endif %}
+        {% endif %}
+
+    </div>
+
+
+{% endblock %}

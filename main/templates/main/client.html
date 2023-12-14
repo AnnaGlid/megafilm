@@ -1,0 +1,50 @@
+{% extends "main/base.html"%}
+
+{% block header %}
+    Klient
+{% endblock %}
+
+{% block desc %}
+{% endblock %}
+
+{% block data %}
+    <a href="/clients/" class="btn btn-dark btn-lg active" role="button">Powrót</a>
+    <a href="/client/{{ client.username }}/edit/" class="btn btn-dark btn-lg active" role="button">Edytuj</a>
+    <a href="/client/{{ client.username }}/delete/" class="btn btn-dark btn-lg active" role="button">Usuń</a>
+
+    <div class="meta name">
+        <p class="label">Nazwa użytkownika</p>
+        <p class="value">{{ client.username }}</p>
+    </div>
+
+    <div class="meta name">
+        <p class="label">Imię:</p>
+        <p class="value">{{ client.name }}</p>
+    </div>
+
+    <div class="meta surname">
+        <p class="label">Nazwisko:</p>
+        <p class="value">{{ client.surname }}</p>
+    </div>
+
+    <div class="meta adress">
+        <p class="label">Adres:</p>
+        <p class="value">{{ client.address }}</p>
+    </div>
+
+    <div class="meta number">
+        <p class="label">Numer telefonu:</p>
+        <p class="value">{{ client.phone }}</p>
+    </div>
+
+    <div class="meta rented">
+        <p class="label">Wypożyczonych filmów:</p>
+        <p class="value">{{ client.moviesRented }}</p>
+    </div>
+
+    <div class="meta addTime">
+        <p class="label">Dodano:</p>
+        <p class="value">{{  client.addDate }}</p>
+    </div>    
+
+{% endblock %}

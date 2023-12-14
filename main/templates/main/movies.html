@@ -1,0 +1,55 @@
+{% extends "main/table.html"%}
+
+{% block header %} 
+    <a href="/movies/" id="movie-title">
+        Nasze filmy 
+    </a>
+{% endblock %}
+
+{% block desc %}    
+
+    <form method="GET" action="/movies/search">
+        {{  form }}
+        <button type="submit">Szukaj</button>
+    </form>
+    
+{% endblock %}
+
+{% block extra %}
+    {% if user.is_superuser %}
+        <a href="/movie-add/" class="btn btn-dark btn-lg active" role="button" >
+            Dodaj film
+        </a>
+    {% endif %}
+{% endblock %}
+
+{% block headers %}
+            <th>LP</th>        
+            <th><a href="?{{ search }}order_by=title&sort={{ sort }}">Tytuł</a></th>
+            <th><a href="?{{ search }}order_by=genre&sort={{ sort }}">Gatunek</a></th>
+            <th><a href="?{{ search }}order_by=director&sort={{ sort }}">Reżyser</a></th>
+            <th><a href="?{{ search }}order_by=duration&sort={{ sort }}">Czas trwania</a></th>
+            <th></th>
+{% endblock %}
+{% block rows %}
+        {% for idx, movie in movies %}
+            <tr>    
+                <th scope="row"> {{ idx }} </th>
+                <td>
+                    <a href="/movie/{{ movie.slug }}">
+                        {{ movie.title }}         
+                    </a>           
+                </td>
+                <td>{{ movie.genre }}</td>
+                <td>{{ movie.director }}</td>
+                <td>{{ movie.duration }}</td>
+                <td>
+                    {% if movie.isRented %}
+                        <p class="disabled">
+                            Film niedostępny
+                        </p>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "main/table.html"%}
+
+{% block header %} 
+    <a href="/clients/search" id="movie-title">
+        Klienci
+    </a>
+{% endblock %}
+
+{% block desc %}    
+    <form method="GET" action="/clients/search">
+        {{  form.as_ul }}
+        <button type="submit">Szukaj</button>
+    </form>
+    
+{% endblock %}
+
+{% block extra %}
+    <a href="/register/" class="btn btn-dark btn-lg active" role="button" >
+        Dodaj nowego klienta
+    </a>
+{% endblock %}
+
+
+{% block headers %}
+            <th>LP</th>        
+            <th><a href="?{{ search }}order_by=name&sort={{ sort }}">Imię</a></th>
+            <th><a href="?{{ search }}order_by=surname&sort={{ sort }}">Nazwisko</a></th>
+            <th><a href="?{{ search }}order_by=address&sort={{ sort }}">Adres</a></th>
+            <th><a href="?{{ search }}order_by=phone&sort={{ sort }}">Numer telefonu</a></th>
+            <th><a href="?{{ search }}order_by=moviesRented&sort={{ sort }}">Wypożyczonych filmów</a></th>
+            <th><a href="?{{ search }}order_by=addDate&sort={{ sort }}">Data dodania</a></th>
+{% endblock %}
+{% block rows %}
+        {% for idx, client in clients %}
+            <tr>    
+                <th scope="row"> {{ idx }} </th>
+                <td> 
+                    <a href="/client/{{ client.username }}">
+                        {{ client.name }}
+                    </a>                    
+                </td>
+                <td>
+                    <a href="/client/{{ client.username }}">
+                        {{ client.surname }}
+                    </a>
+                </td>
+                <td>{{ client.address }}</td>
+                <td>{{ client.phone }}</td>
+                <td>{{ client.moviesRented }}</td>
+                <td>{{ client.addDate }}</td>
+            </tr>
+        {% endfor %}
+{% endblock %}
